@@ -103,6 +103,7 @@ function startQuiz(){
     alert('You did not enter yes/no or y/n for this question, chum.');
   }
 
+  document.getElementById('quizAnswerSection').style.visibility = 'visible';
 
   // Calls printAnswers function to print the answers onto HTML.
   printAnswers(chocolateQ, 1, prompt1, realAnswer1);
@@ -123,7 +124,7 @@ function printAnswers(answer, number, prompt, realAns){
 
 // Function to print final message to user.
 function finalPrint(){
-  document.getElementById('finalMessageArea').textContent = 'Hey, ' + userName + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.'
+  document.getElementById('finalMessageArea').textContent = 'Hey, ' + userName + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
 }
 
 // Repetitive 'yes' checking

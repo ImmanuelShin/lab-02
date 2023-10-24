@@ -38,26 +38,56 @@ main h1 {
 
 h2 {
     font-size: 24px;
-    padding: 5px;
+    padding: 10px;
     font-weight: bold;
 }
 
-#bioSection {
+h3 {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+#finalMessageSection, #bioSection, #qASection {
     background-color: #53a2be;
     width: 80%;
-    margin: 20px auto 20px auto;
+    margin: 10px auto 10px auto;
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px ;
 }
 
-#qASection {
-    background-color: #53a2be;
-    width: 80%;
+#bioSection p {
+    width: 95%;
     margin: auto;
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px ;
+}
+
+#qASection button {
+    background-color: #eb8a90;
+    border: solid thin black;
+    color: #260F43;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 50px;
+}
+
+#qASection button:hover {
+    background-color: #E66A71;
+}
+
+#quizAnswerSection {
+    visibility: hidden;
+    width: 90%;
+    margin: auto;
+    border: thin solid black;
+    background: #eb8a90;
+    padding: 10px;
+}
+
+#quizAnswerSection p {
+    padding: 5px;
+    border-bottom: 1px solid black;
 }
 
 footer {
