@@ -1,6 +1,6 @@
 html {
     font-size: 16px;
-    color: #FFFFFF;
+    color: #0A0412;
 }
 
 header {
@@ -19,19 +19,14 @@ body {
     justify-content: center;
 }
 
-section {
-    color: #0A0412;
-}
-
 main h1 {
     font-size: 32px;
     padding: 5px;
     font-weight: bold;
     text-align: center;
-    text-shadow: black 0px 0px 4px;
     width: 10%;
     margin: 10px auto;
-    background-color: #07004d;
+    background-color: #53a2be;
     border: 1px solid black;
     border-radius: 5px;
 }
@@ -52,8 +47,8 @@ h3 {
     background-color: #53a2be;
     width: 80%;
     margin: 10px auto 10px auto;
-    padding: 10px;
-    border: 2px solid black;
+    padding: 15px;
+    border: 1px solid black;
     border-radius: 5px ;
 }
 
@@ -61,10 +56,12 @@ h3 {
     width: 95%;
     margin: auto;
     padding: 10px;
+    background-color: aquamarine;
+    border: solid thin black;
 }
 
 #qASection button {
-    background-color: #eb8a90;
+    background-color: aquamarine;
     border: solid thin black;
     color: #260F43;
     padding: 5px;
@@ -73,7 +70,7 @@ h3 {
 }
 
 #qASection button:hover {
-    background-color: #E66A71;
+    background-color: #1CFFB5;
 }
 
 #quizAnswerSection {
@@ -81,7 +78,7 @@ h3 {
     width: 90%;
     margin: auto;
     border: thin solid black;
-    background: #eb8a90;
+    background: aquamarine;
     padding: 10px;
 }
 
