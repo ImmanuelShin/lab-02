@@ -2,7 +2,14 @@
 
 // User greeting section. Prompts user for name.
 let userName = prompt('Hello! What is your name?');
-alert('Welcome to this webpage, ' + userName + '! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+if (userName) {
+  alert('Welcome to this webpage, ' + userName + '! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+} else {
+  userName = 'anonymous user';
+  alert('Welcome to this webpage, anonymous user! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+}
+
+
 
 // Quiz section. Called by quizButton.
 function startQuiz(){
@@ -103,12 +110,20 @@ function startQuiz(){
   printAnswers(coffeeQ, 3, prompt3, realAnswer3);
   printAnswers(teaQ, 4, prompt4, realAnswer4);
   printAnswers(petQ, 5, prompt5, realAnswer5);
+
+  // Calls finalPrint to print final message on HTML.
+  finalPrint();
 }
 
 // function to print answers to HTML. Requires the answer and the corresponding question number
 function printAnswers(answer, number, prompt, realAns){
-  let pPrint = document.getElementById("quizQ" + number);
-  pPrint.textContent = prompt + ': ' + answer + '. Correct Answer: ' + realAns;
+  let pPrint = document.getElementById('quizQ' + number);
+  pPrint.textContent = prompt + ' Your answer: ' + answer + '. Correct Answer: ' + realAns;
+}
+
+// Function to print final message to user.
+function finalPrint(){
+  document.getElementById('finalMessageArea').textContent = 'Hey, ' + userName + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.'
 }
 
 // Repetitive 'yes' checking
