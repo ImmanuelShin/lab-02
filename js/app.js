@@ -20,8 +20,13 @@ function intro(input) {
   }
 }
 
+// Tally keeps track of # correct guesses.
+let correctTally = 0;
+
 // Quiz section. Called by quizButton.
 function startQuiz(){
+
+  correctTally = 0;
 
   // Bank of all questions
   const questions = [
@@ -68,12 +73,9 @@ function startQuiz(){
   ];
 
 
-  // Tally keeps track of # correct guesses.
-  let correctTally = 0;
-
   //Loop for yesNo function
-  for (let x = 0; x<questions.length; x++){
-    correctTally = yesNo(x, questions[x], prompts[x], correctTally, responses[x], corrects[x]);
+  for (let x = 0; x<5; x++){
+    prompts[x] = yesNo(questions[x], prompts[x], responses[x], corrects[x]);
   }
 
   // // First question
@@ -238,29 +240,22 @@ function startQuiz(){
 }
 
 //Generic yes or no function
-
-function yesNo(index, questions, prompts, correctTally, responses, corrects){
-  prompts[index] = prompt(questions[index]).toLowerCase();
-  if (isYes(prompts[index])){
-    alert(responses[index][0]);
-    if (corrects[index] === 1){
+function yesNo(questions, prompts, responses, corrects){
+  prompts = prompt(questions).toLowerCase();
+  if (isYes(prompts)){
+    alert(responses[0]);
+    if (Number(corrects) === 1){
       correctTally += 1;
-      return correctTally;
-    } else {
-      return correctTally;
     }
-  } else if (isNo(prompts[index])){
-    alert(responses[index][1]);
-    if (corrects[index] === 0){
+  } else if (isNo(prompts)){
+    alert(responses[1]);
+    if (Number(corrects) === 0){
       correctTally += 1;
-      return correctTally;
-    } else {
-      return correctTally;
     }
   } else {
     alert('You did not enter yes/no or y/n for this question, buddy.');
-    return correctTally;
   }
+  return prompts;
 }
 
 // function to print answers to HTML. Takes question, prompt, and answer arguments
