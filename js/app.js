@@ -2,14 +2,21 @@
 
 // User greeting section. Prompts user for name.
 let userName = prompt('Hello! What is your name?');
-if (userName) {
-  alert('Welcome to this webpage, ' + userName + '! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
-} else {
-  userName = 'anonymous user';
-  alert('Welcome to this webpage, anonymous user! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
-}
+
+// Calling
+intro(userName);
 finalPrint();
 
+// Logic section for intro prompt. Takes prompt input as argument.
+// If not null/undefined, will alert with given input, else will switch input to "anonymous user"
+function intro(input) {
+  if (input) {
+    alert('Welcome to this webpage, ' + input + '! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+  } else {
+    input = 'anonymous user';
+    alert('Welcome to this webpage, anonymous user! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+  }
+}
 
 // Quiz section. Called by quizButton.
 function startQuiz(){
@@ -25,7 +32,7 @@ function startQuiz(){
     'What about a bit of math? If 4 = x\u00B2, what can x equal?'
   ];
 
-  // Bank f all prompts
+  // Bank of all prompts
   const prompts = [];
 
   // Bank of all Answers
@@ -39,6 +46,7 @@ function startQuiz(){
     [2, -2]
   ];
 
+  // Tally keeps track of # correct guesses.
   let correctTally = 0;
 
   // First question
@@ -122,10 +130,14 @@ function startQuiz(){
   }
 
   // Sixth Question
+  // Generates random number 1-10 into randomDigit
+  // Keeps track of # of guesses with guess6Counter
+  // Keeps track of all user inputs with number6Guesses array
   let randomDigit = Math.floor((Math.random() * 10) + 1);
   answers[5] = randomDigit;
   let guess6Counter = 1;
   const number6Guesses = [];
+
   while (guess6Counter <= 4) {
     prompts[5] = prompt(questions[5] + ' You have ' + (5 - guess6Counter) + ' guesses left.');
     number6Guesses[guess6Counter-1] = prompts[5];
@@ -149,17 +161,19 @@ function startQuiz(){
   }
 
   // Seventh Question
-
+  // Keeps track of # of guesses with guess7Counter
+  // Keeps track of all user inputs with number7Guesses array
+  // correctness breaks loop when set to true.
   let guess7Counter = 1;
   const number7Guesses = [];
   let correctness = false;
-  console.log(answers[6].length);
+
   while ((guess7Counter <= 6) && (correctness === false)) {
     prompts[6] = prompt(questions[6] + ' You have ' + (7 - guess7Counter) + ' guesses left.');
     number7Guesses[guess7Counter - 1] = prompts[6];
     for (let index in answers[6]) {
       if (Number(prompts[6]) === Number(answers[6][index])) {
-        console.log(answers[6][index]);
+        // console.log(answers[6][index]);
         alert('You got it! It only took you ' + guess7Counter + ' tries!');
         prompts[6] = number7Guesses;
         correctness = true;
@@ -176,12 +190,14 @@ function startQuiz(){
     }
   }
 
+  // Makes the hidden answer section visible
+  getID('quizAnswerSection').style.visibility = 'visible';
 
-  document.getElementById('quizAnswerSection').style.visibility = 'visible';
-
+  // Creates new p element to contain final score
   // Calls printAnswers function to print the answers onto HTML.
-  let section = document.getElementById('quizAnswerSection');
-  let tallyPrint = document.createElement('p');
+  // Adds new p element to the end of the answer section
+  let section = getID('quizAnswerSection');
+  let tallyPrint = cEl('p');
   tallyPrint.textContent = 'You scored ' + correctTally + ' out of 7!';
   while(section.firstChild) {
     section.removeChild(section.lastChild);
@@ -193,12 +209,12 @@ function startQuiz(){
 
 }
 
-// function to print answers to HTML. Requires the answer and the corresponding question number
+// function to print answers to HTML. Takes question, prompt, and answer arguments
 function printAnswers(prompt, answer, realAns){
-  let section = document.getElementById('quizAnswerSection');
-  let pPrint = document.createElement('p');
+  let section = getID('quizAnswerSection');
+  let pPrint = cEl('p');
   pPrint.setAttribute('class', 'quizP');
-  let br = document.createElement('br');
+  let br = cEl('br');
   let node1 = document.createTextNode(prompt);
   let node2 = document.createTextNode('Your answer: ' + answer + '. Correct Answer: ' + realAns);
   pPrint.appendChild(node1);
@@ -208,6 +224,7 @@ function printAnswers(prompt, answer, realAns){
 }
 
 // Function to print final message to user.
+// Was the final area until lab-03 told us to put another thing at the bottom. Just saying.
 function finalPrint(){
   document.getElementById('finalMessageArea').textContent = 'Hey, ' + userName + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
 }
@@ -220,4 +237,14 @@ function isYes(answer){
 // Repetitive 'no' checking
 function isNo(answer){
   return (answer === 'n' || answer === 'no');
+}
+
+// Get element by ID
+function getID(element){
+  return document.getElementById(element);
+}
+
+// Create element
+function cEl(element){
+  return document.createElement(element);
 }
