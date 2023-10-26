@@ -5,16 +5,18 @@ let userName = prompt('Hello! What is your name?');
 
 // Calling
 intro(userName);
-finalPrint();
+
 
 // Logic section for intro prompt. Takes prompt input as argument.
 // If not null/undefined, will alert with given input, else will switch input to "anonymous user"
 function intro(input) {
   if (input) {
     alert('Welcome to this webpage, ' + input + '! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+    finalPrint(input);
   } else {
     input = 'anonymous user';
     alert('Welcome to this webpage, anonymous user! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
+    finalPrint(input);
   }
 }
 
@@ -225,8 +227,8 @@ function printAnswers(prompt, answer, realAns){
 
 // Function to print final message to user.
 // Was the final area until lab-03 told us to put another thing at the bottom. Just saying.
-function finalPrint(){
-  document.getElementById('finalMessageArea').textContent = 'Hey, ' + userName + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
+function finalPrint(user){
+  document.getElementById('finalMessageArea').textContent = 'Hey, ' + user + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
 }
 
 // Repetitive 'yes' checking
