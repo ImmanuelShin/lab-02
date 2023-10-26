@@ -9,3 +9,10 @@ Lab 02:
 ![Google Lighthouse Score](img/accessibilityScore02.png)
 Lab 03:
 ![Google Lighthouse Score](img/accessibilityScore03.png)
+Lab 04:
+![Google Lighthouse Score](img/accessibilityScore04.png)
+
+Lab 04 Pair Programming:
+
+- Driver: Myra Reeves
+- Navigator: Immanuel Shin
