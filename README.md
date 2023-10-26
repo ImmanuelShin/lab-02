@@ -5,4 +5,7 @@ Lab: “About Me” project
 A HTML project creating a website talking about myself.
 
 Accessibility requirement:
-![Google Lighthouse Score](img/accessibilityScore.png)
+Lab 02:
+![Google Lighthouse Score](img/accessibilityScore02.png)
+Lab 03:
+![Google Lighthouse Score](img/accessibilityScore03.png)
