@@ -48,8 +48,22 @@ function startQuiz(){
     [2, -2]
   ];
 
+  //Bank of all yes or no answers.
+  const responses = [
+    ['Correct! I can\'t handle too sweet of chocolate.','Incorrect! Dark chocolate is the best.'],
+    ['Correct! I like how black and white looks.','Incorrect! Color is fine, but I do like my grays.'],
+    ['Incorrect! Coffee just isn\'t for me.','Correct! I find coffee doesn\'t do anything for me.'],
+    ['Incorrect! Tea is also not for me!','Correct! Instead of caffeine, I ingest pure willpower.']
+    ['Incorrect! That is way too much maintenance.','Correct! Instead of owning pets, I am friends with people who do.']
+  ];
+
   // Tally keeps track of # correct guesses.
   let correctTally = 0;
+
+  //Loop for yesNo function
+  for (let x = 0; x<questions.length; x++){
+    yesNo(x, questions[x], prompts[x], answers[x], responses[x]);
+  }
 
   // First question
   prompts[0] = prompt(questions[0]).toLowerCase();
@@ -192,6 +206,7 @@ function startQuiz(){
     }
   }
 
+
   // Makes the hidden answer section visible
   getID('quizAnswerSection').style.visibility = 'visible';
 
@@ -209,6 +224,20 @@ function startQuiz(){
   });
   section.append(tallyPrint);
 
+}
+
+//Generic yes or no function
+
+function yesNo(index, questions, prompts, answers, responses){
+  prompts[index] = prompt(questions[index]).toLowerCase();
+  if (isYes(prompts[index])){
+    alert(responses[index][0]);
+
+  } else if (isNo(prompts[index])){
+    alert(responses[index][1]);
+  } else {
+    alert('You did not enter yes/no or y/n for this question, buddy.');
+  }
 }
 
 // function to print answers to HTML. Takes question, prompt, and answer arguments
