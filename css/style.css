@@ -130,8 +130,8 @@ h3 {
 }
 
 header {
-    margin-bottom: 2em;
-    padding: 0 1.5em 0 1.5em;
+    margin-bottom: 4em;
+    padding: 0 0 0 3em;
 }
 
 /* 
@@ -164,6 +164,10 @@ Background color gradient 9 steps
     background-color: #3b3b3b;
 }
 
+#top10 {
+    background-color: #404040;
+}
+
 #bioSection p {
     width: 95%;
     margin: auto;
@@ -172,17 +176,43 @@ Background color gradient 9 steps
     color: #c5c5c5;
 }
 
+#expEduContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.eEBox {
+    width: 30%;
+    display: block;
+    align-items: center;
+    background-color: #242525;
+    margin: 1em;
+    padding: 1em;
+    color: #c5c5c5;
+}
+
+.eEBox h3 {
+    text-align: center;
+}
+
+.eEBox ul {
+    list-style: inside;
+    padding: 2em;
+}
+
 #qASection button {
-    background-color: aquamarine;
-    border: solid thin black;
+    background-color: #7fffd4;
+    transition: background-color .3s ease-in-out;
     color: #260F43;
     padding: 5px;
-    display: inline-block;
-    border-radius: 50px;
+    margin: auto;
+    border-style: none;
+    border-radius: 5px;
+    width: 15%;
 }
 
 #qASection button:hover {
-    background-color: #1CFFB5;
+    background-color: rgb(27, 233, 164);
 }
 
 #quizAnswerSection {
@@ -190,13 +220,60 @@ Background color gradient 9 steps
     width: 90%;
     margin: auto;
     border: thin solid black;
-    background: aquamarine;
+    background-color: #242525;
     padding: 10px;
+}
+
+.qABox {
+    color: #c5c5c5;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+.qABox h3 {
+    padding: 1em;
+    text-align: center;
 }
 
 #quizAnswerSection p {
     padding: 5px;
     border-bottom: 1px solid black;
+}
+
+#finalMessageSection p {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background-color: #242525;
+    color: #c5c5c5;
+}
+
+#top10 {
+
+}
+
+#t10Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#t10Box h3 {
+    text-align: center;
+    padding: 1em;
+}
+
+#t10Box ol {
+    list-style-type: upper-roman;
+    padding: 1em;
+    margin: auto;
+    background-color: #242525;
+    list-style-position: inside;
+}
+
+#t10Box li {
+    padding: 0.2em;
+    color: #c5c5c5;
 }
 
 footer {

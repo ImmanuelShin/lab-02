@@ -41,14 +41,14 @@
                 <h2>Experience/Education</h2>
             </header>
             <div id="expEduContainer">
-                <div id="expBox">
+                <div class="eEBox">
                     <h3>Experience</h3>
                     <ul>
                         <li>Mathnasium: Tutor</li>
                         <li>Magen: Data Analyst</li>
                     </ul>
                 </div>
-                <div id="eduBox">
+                <div class="eEBox">
                     <h3>Education</h3>
                     <ul>
                         <li>Bellevue College</li>
@@ -62,18 +62,42 @@
             <header>
                 <h2>Q&A</h2>
             </header>
-            <button id="quizButton" onclick="startQuiz()">Take a quiz about me!</button>
-            <h3>Your Answers:</h3>
-            <section id="quizAnswerSection">
-                <p id="quizQ1"></p>
-                <p id="quizQ2"></p>
-                <p id="quizQ3"></p>
-                <p id="quizQ4"></p>
-                <p id="quizQ5"></p>
-            </section>
+            <div id="qAContainer">
+                <div class="qABox">
+                    <button id="quizButton" onclick="startQuiz()">Take a quiz about me!</button>
+                </div>
+                <div class="qABox">
+                    <h3>Your Answers:</h3>
+                    <section id="quizAnswerSection">
+                    </section>
+                </div>
+            </div>
         </section>
         <section id="finalMessageSection">
+            <header>
+                <h2>Hey, thanks</h2>
+            </header>
             <p id="finalMessageArea"></p>
+        </section>
+        <section id="top10">
+            <header>
+                <h2>Top Ten</h2>
+            </header>
+            <div id="t10Box">
+                <h3>Numbers 1-10 ranked on a scale of 10</h3>
+                <ol>
+                    <li>7: Lucky number for many cultures.</li>
+                    <li>3: Considered a magic number and has a nice balance.</li>
+                    <li>8: Associated with prosperity and success in some cultures.</li>
+                    <li>5: A middle-of-the-road number, neither too high nor too low.</li>
+                    <li>9: Has a certain elegance, and it's the highest single-digit odd number.</li>
+                    <li>2: A simple and basic number.</li>
+                    <li>6: Symmetrical and has a nice visual balance.</li>
+                    <li>4: Represents stability and order.</li>
+                    <li>10: A nice round number, but a bit too perfect.</li>
+                    <li>1: The loneliest number, as the song goes.</li>
+                </ol>
+            </div>
         </section>
     </main>
     <footer>

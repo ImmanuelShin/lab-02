@@ -8,118 +8,185 @@ if (userName) {
   userName = 'anonymous user';
   alert('Welcome to this webpage, anonymous user! I\'m glad to have you here. This website contains information all about me, so feel free to get to know me a bit!');
 }
-
+finalPrint();
 
 
 // Quiz section. Called by quizButton.
 function startQuiz(){
 
-  // Bank of all Prompts
-  let prompt1 = 'I really like chocolate. Of the many chocolates, do I like dark chocolate the best?';
-  let prompt2 = 'In spite of the rainbow, do I prefer grayscale?';
-  let prompt3 = 'I am always really tired. Do I manage to stay awake with excessive use of coffee?';
-  let prompt4 = 'I don\'t drink coffee, sure, but do I instead drink a nice cup of tea?';
-  let prompt5 = 'I find pets really cute. Do I own 3 dogs and 2 cats?';
+  // Bank of all questions
+  const questions = [
+    'I really like chocolate. Of the many chocolates, do I like dark chocolate the best?',
+    'In spite of the rainbow, do I prefer grayscale?',
+    'I am always really tired. Do I manage to stay awake with excessive use of coffee?',
+    'I don\'t drink coffee, sure, but do I instead drink a nice cup of tea?',
+    'I find pets really cute. Do I own 3 dogs and 2 cats?',
+    'Let\'s change it up a bit and play a guessing game. I am thinking of a number between 1 and 100. What number is it?',
+    'What about a bit of math? If 4 = x\u00B2, what can x equal?'
+  ];
+
+  // Bank f all prompts
+  const prompts = [];
 
   // Bank of all Answers
-  let realAnswer1 = 'Yes';
-  let realAnswer2 = 'Yes';
-  let realAnswer3 = 'No';
-  let realAnswer4 = 'No';
-  let realAnswer5 = 'No';
+  const answers = [
+    'Yes',
+    'Yes',
+    'No',
+    'No',
+    'No',
+    '',
+    [2, -2]
+  ];
 
-  // First question
-  let chocolateQ = prompt(prompt1).toLowerCase();
+  // // First question
+  // prompts[0] = prompt(questions[0]).toLowerCase();
 
-  // First answer
-  if (isYes(chocolateQ)){
-    //console.log('Correct! I can\'t handle too sweet of chocolate.');
-    alert('Correct! I can\'t handle too sweet of chocolate.');
-  } else if (isNo(chocolateQ)){
-    //console.log('Incorrect! Dark chocolate is the best.');
-    alert('Incorrect! Dark chocolate is the best.');
-  } else {
-    //console.log('You did not enter yes/no or y/n for this question, buddy.');
-    alert('You did not enter yes/no or y/n for this question, buddy.');
+  // // First answer
+  // if (isYes(prompts[0])){
+  //   //console.log('Correct! I can\'t handle too sweet of chocolate.');
+  //   alert('Correct! I can\'t handle too sweet of chocolate.');
+  // } else if (isNo(prompts[0])){
+  //   //console.log('Incorrect! Dark chocolate is the best.');
+  //   alert('Incorrect! Dark chocolate is the best.');
+  // } else {
+  //   //console.log('You did not enter yes/no or y/n for this question, buddy.');
+  //   alert('You did not enter yes/no or y/n for this question, buddy.');
+  // }
+
+  // // Second question
+  // prompts[1] = prompt(questions[1]).toLowerCase();
+
+  // // Second answer
+  // if (isYes(prompts[1])){
+  //   //console.log('Correct! I like how black and white looks.');
+  //   alert('Correct! I like how black and white looks.');
+  // } else if (isNo(prompts[1])){
+  //   //console.log('Incorrect! Color is fine, but I do like my grays.');
+  //   alert('Incorrect! Color is fine, but I do like my grays.');
+  // } else {
+  //   //console.log('You did not enter yes/no or y/n for this question, pal.');
+  //   alert('You did not enter yes/no or y/n for this question, pal.');
+  // }
+
+  // // Third Question
+  // prompts[2] = prompt(questions[2]).toLowerCase();
+
+  // // Third answer
+  // if (isYes(prompts[2])){
+  //   //console.log('Incorrect! Coffee just isn\'t for me.');
+  //   alert('Incorrect! Coffee just isn\'t for me.');
+  // } else if (isNo(prompts[2])){
+  //   //console.log('Correct! I find coffee doesn\'t do anything for me.');
+  //   alert('Correct! I find coffee doesn\'t do anything for me.');
+  // } else {
+  //   //console.log('You did not enter yes/no or y/n for this question, mate.');
+  //   alert('You did not enter yes/no or y/n for this question, mate.');
+  // }
+
+  // // Fourth Question
+  // prompts[3] = prompt(questions[3]).toLowerCase();
+
+  // // Fourth answer
+  // if (isYes(prompts[3])){
+  //   //console.log('Incorrect! Tea is also not for me!');
+  //   alert('Incorrect! Tea is also not for me!');
+  // } else if (isNo(prompts[3])){
+  //   //console.log('Correct! Instead of caffeine, I ingest pure willpower.');
+  //   alert('Correct! Instead of caffeine, I ingest pure willpower.');
+  // } else {
+  //   //console.log('You did not enter yes/no or y/n for this question, chum.');
+  //   alert('You did not enter yes/no or y/n for this question, chum.');
+  // }
+
+  // // Fifth Question
+  // prompts[4] = prompt(questions[4]).toLowerCase();
+
+  // // Fifth answer
+  // if (isYes(prompts[4])){
+  //   //console.log('Incorrect! That is way too much maintenance.');
+  //   alert('Incorrect! That is way too much maintenance.');
+  // } else if (isNo(prompts[4])){
+  //   //console.log('Correct! Instead of owning pets, I am friends with people who do.');
+  //   alert('Correct! Instead of owning pets, I am friends with people who do.');
+  // } else {
+  //   //console.log('You did not enter yes/no or y/n for this question, chum.');
+  //   alert('You did not enter yes/no or y/n for this question, chum.');
+  // }
+
+  // // Sixth Question
+  // let randomDigit = Math.floor((Math.random() * 10) + 1);
+  // answers[5] = randomDigit;
+  // let guess6Counter = 1;
+  // const number6Guesses = [];
+  // while (guess6Counter <= 4) {
+  //   prompts[5] = prompt(questions[5] + ' You have ' + (5 - guess6Counter) + ' guesses left.');
+  //   number6Guesses[guess6Counter-1] = prompts[5];
+  //   if (Number(prompts[5]) === randomDigit) {
+  //     alert('You got it! It only took you ' + guess6Counter + ' tries!');
+  //     prompts[5] = number6Guesses;
+  //     break;
+  //   } else if (guess6Counter <= 3) {
+  //     if (prompts[5] < randomDigit) {
+  //       alert('Nope! Too bad, your guess was too low. Try again!');
+  //     } else {
+  //       alert('Nope! Too bad, your guess was too high. Try again!');
+  //     }
+  //   } else {
+  //     alert('Nope! You\'re out of guesses. The correct answer was: ' + randomDigit + '. Thanks for playing!');
+  //     prompts[5] = number6Guesses;
+  //     break;
+  //   }
+  //   guess6Counter += 1;
+  // }
+
+  // Seventh Question
+
+  let guess7Counter = 1;
+  const number7Guesses = [];
+  let correctness = false;
+  console.log(answers[6].length);
+  while ((guess7Counter <= 6) && (correctness === false)) {
+    prompts[6] = prompt(questions[6] + ' You have ' + (7 - guess7Counter) + ' guesses left.');
+    number7Guesses[guess7Counter - 1] = prompts[6];
+    for (let index in answers[6]) {
+      if (Number(prompts[6]) === Number(answers[6][index])) {
+        console.log(answers[6][index]);
+        alert('You got it! It only took you ' + guess7Counter + ' tries!');
+        prompts[6] = number7Guesses;
+        correctness = true;
+        break;
+      }
+    }
+    guess7Counter += 1;
+    if (guess7Counter <=6 && (correctness === false)) {
+      alert('Nope! Try again!');
+    } else if (correctness === false) {
+      alert('Aww, game over! Try again next time!');
+      prompts[6] = number7Guesses;
+    }
   }
 
-  // Second question
-  let colorQ = prompt(prompt2).toLowerCase();
-
-  // Second answer
-  if (isYes(colorQ)){
-    //console.log('Correct! I like how black and white looks.');
-    alert('Correct! I like how black and white looks.');
-  } else if (isNo(colorQ)){
-    //console.log('Incorrect! Color is fine, but I do like my grays.');
-    alert('Incorrect! Color is fine, but I do like my grays.');
-  } else {
-    //console.log('You did not enter yes/no or y/n for this question, pal.');
-    alert('You did not enter yes/no or y/n for this question, pal.');
-  }
-
-  // Third Question
-  let coffeeQ = prompt(prompt3).toLowerCase();
-
-  // Third answer
-  if (isYes(coffeeQ)){
-    //console.log('Incorrect! Coffee just isn\'t for me.');
-    alert('Incorrect! Coffee just isn\'t for me.');
-  } else if (isNo(coffeeQ)){
-    //console.log('Correct! I find coffee doesn\'t do anything for me.');
-    alert('Correct! I find coffee doesn\'t do anything for me.');
-  } else {
-    //console.log('You did not enter yes/no or y/n for this question, mate.');
-    alert('You did not enter yes/no or y/n for this question, mate.');
-  }
-
-  // Fourth Question
-  let teaQ = prompt(prompt4).toLowerCase();
-
-  // Fourth answer
-  if (isYes(teaQ)){
-    //console.log('Incorrect! Tea is also not for me!');
-    alert('Incorrect! Tea is also not for me!');
-  } else if (isNo(teaQ)){
-    //console.log('Correct! Instead of caffeine, I ingest pure willpower.');
-    alert('Correct! Instead of caffeine, I ingest pure willpower.');
-  } else {
-    //console.log('You did not enter yes/no or y/n for this question, chum.');
-    alert('You did not enter yes/no or y/n for this question, chum.');
-  }
-
-  // Fifth Question
-  let petQ = prompt(prompt5).toLowerCase();
-
-  // Fifth answer
-  if (isYes(petQ)){
-    //console.log('Incorrect! That is way too much maintenance.');
-    alert('Incorrect! That is way too much maintenance.');
-  } else if (isNo(petQ)){
-    //console.log('Correct! Instead of owning pets, I am friends with people who do.');
-    alert('Correct! Instead of owning pets, I am friends with people who do.');
-  } else {
-    //console.log('You did not enter yes/no or y/n for this question, chum.');
-    alert('You did not enter yes/no or y/n for this question, chum.');
-  }
 
   document.getElementById('quizAnswerSection').style.visibility = 'visible';
 
   // Calls printAnswers function to print the answers onto HTML.
-  printAnswers(chocolateQ, 1, prompt1, realAnswer1);
-  printAnswers(colorQ, 2, prompt2, realAnswer2);
-  printAnswers(coffeeQ, 3, prompt3, realAnswer3);
-  printAnswers(teaQ, 4, prompt4, realAnswer4);
-  printAnswers(petQ, 5, prompt5, realAnswer5);
-
-  // Calls finalPrint to print final message on HTML.
-  finalPrint();
+  let section = document.getElementById('quizAnswerSection');
+  while(section.firstChild) {
+    section.removeChild(section.lastChild);
+  }
+  questions.forEach(function (item, index) {
+    printAnswers(questions[index], prompts[index], answers[index]);
+  });
 }
 
 // function to print answers to HTML. Requires the answer and the corresponding question number
-function printAnswers(answer, number, prompt, realAns){
-  let pPrint = document.getElementById('quizQ' + number);
+function printAnswers(prompt, answer, realAns){
+  let section = document.getElementById('quizAnswerSection');
+  let pPrint = document.createElement('p');
+  pPrint.setAttribute('class', 'quizP');
   pPrint.textContent = prompt + ' Your answer: ' + answer + '. Correct Answer: ' + realAns;
+  section.append(pPrint);
 }
 
 // Function to print final message to user.
