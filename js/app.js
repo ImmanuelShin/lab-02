@@ -20,7 +20,7 @@ function intro(input) {
   }
 }
 
-// Tally keeps track of # correct guesses.
+// Tally keeps track of # correct guesses. Global for ease of access.
 let correctTally = 0;
 
 // Quiz section. Called by quizButton.
@@ -62,8 +62,7 @@ function startQuiz(){
     ['Incorrect! That is way too much maintenance.','Correct! Instead of owning pets, I am friends with people who do.']
   ];
 
-  //Bank of all correct answers
-
+  // Bank of all correct answer values.
   const corrects = [
     [1],
     [1],
@@ -73,90 +72,10 @@ function startQuiz(){
   ];
 
 
-  //Loop for yesNo function
-  for (let x = 0; x<5; x++){
+  //Loop for yesNo function. Loops five times for all five yes/no questions.
+  for (let x = 0; x < 5; x++){
     prompts[x] = yesNo(questions[x], prompts[x], responses[x], corrects[x]);
   }
-
-  // // First question
-  // prompts[0] = prompt(questions[0]).toLowerCase();
-
-  // // First answer
-  // if (isYes(prompts[0])){
-  //   //console.log('Correct! I can\'t handle too sweet of chocolate.');
-  //   alert('Correct! I can\'t handle too sweet of chocolate.');
-  //   correctTally += 1;
-  // } else if (isNo(prompts[0])){
-  //   //console.log('Incorrect! Dark chocolate is the best.');
-  //   alert('Incorrect! Dark chocolate is the best.');
-  // } else {
-  //   //console.log('You did not enter yes/no or y/n for this question, buddy.');
-  //   alert('You did not enter yes/no or y/n for this question, buddy.');
-  // }
-
-  // // Second question
-  // prompts[1] = prompt(questions[1]).toLowerCase();
-
-  // // Second answer
-  // if (isYes(prompts[1])){
-  //   //console.log('Correct! I like how black and white looks.');
-  //   alert('Correct! I like how black and white looks.');
-  //   correctTally += 1;
-  // } else if (isNo(prompts[1])){
-  //   //console.log('Incorrect! Color is fine, but I do like my grays.');
-  //   alert('Incorrect! Color is fine, but I do like my grays.');
-  // } else {
-  //   //console.log('You did not enter yes/no or y/n for this question, pal.');
-  //   alert('You did not enter yes/no or y/n for this question, pal.');
-  // }
-
-  // // Third Question
-  // prompts[2] = prompt(questions[2]).toLowerCase();
-
-  // // Third answer
-  // if (isYes(prompts[2])){
-  //   //console.log('Incorrect! Coffee just isn\'t for me.');
-  //   alert('Incorrect! Coffee just isn\'t for me.');
-  // } else if (isNo(prompts[2])){
-  //   //console.log('Correct! I find coffee doesn\'t do anything for me.');
-  //   alert('Correct! I find coffee doesn\'t do anything for me.');
-  //   correctTally += 1;
-  // } else {
-  //   //console.log('You did not enter yes/no or y/n for this question, mate.');
-  //   alert('You did not enter yes/no or y/n for this question, mate.');
-  // }
-
-  // // Fourth Question
-  // prompts[3] = prompt(questions[3]).toLowerCase();
-
-  // // Fourth answer
-  // if (isYes(prompts[3])){
-  //   //console.log('Incorrect! Tea is also not for me!');
-  //   alert('Incorrect! Tea is also not for me!');
-  // } else if (isNo(prompts[3])){
-  //   //console.log('Correct! Instead of caffeine, I ingest pure willpower.');
-  //   alert('Correct! Instead of caffeine, I ingest pure willpower.');
-  //   correctTally += 1;
-  // } else {
-  //   //console.log('You did not enter yes/no or y/n for this question, chum.');
-  //   alert('You did not enter yes/no or y/n for this question, chum.');
-  // }
-
-  // // Fifth Question
-  // prompts[4] = prompt(questions[4]).toLowerCase();
-
-  // // Fifth answer
-  // if (isYes(prompts[4])){
-  //   //console.log('Incorrect! That is way too much maintenance.');
-  //   alert('Incorrect! That is way too much maintenance.');
-  // } else if (isNo(prompts[4])){
-  //   //console.log('Correct! Instead of owning pets, I am friends with people who do.');
-  //   alert('Correct! Instead of owning pets, I am friends with people who do.');
-  //   correctTally += 1;
-  // } else {
-  //   //console.log('You did not enter yes/no or y/n for this question, chum.');
-  //   alert('You did not enter yes/no or y/n for this question, chum.');
-  // }
 
   // Sixth Question
   // Generates random number 1-10 into randomDigit
@@ -239,7 +158,8 @@ function startQuiz(){
 
 }
 
-//Generic yes or no function
+// Generic yes or no function. Accepts questions, prompts, responses, corrects as arguments.
+// Arguments should not be in array format except for responses.
 function yesNo(questions, prompts, responses, corrects){
   prompts = prompt(questions).toLowerCase();
   if (isYes(prompts)){
@@ -258,7 +178,7 @@ function yesNo(questions, prompts, responses, corrects){
   return prompts;
 }
 
-// function to print answers to HTML. Takes question, prompt, and answer arguments
+// function to print answers to HTML. Takes question, prompt, and answer arguments.
 function printAnswers(prompt, answer, realAns){
   let section = getID('quizAnswerSection');
   let pPrint = cEl('p');
