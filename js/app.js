@@ -228,7 +228,7 @@ function printAnswers(prompt, answer, realAns){
 // Function to print final message to user.
 // Was the final area until lab-03 told us to put another thing at the bottom. Just saying.
 function finalPrint(user){
-  document.getElementById('finalMessageArea').textContent = 'Hey, ' + user + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
+  getID('finalMessageArea').textContent = 'Hey, ' + user + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
 }
 
 // Repetitive 'yes' checking
