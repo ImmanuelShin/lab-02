@@ -11,7 +11,7 @@ Lab 03:
 ![Google Lighthouse Score](img/accessibilityScore03.png)
 Lab 04:
 ![Google Lighthouse Score](img/accessibilityScore04.png)
-Lab 05:
+Lab 05b:
 ![Google Lighthouse Score](img/accessibilityScore05.png)
 
 Lab 04 Pair Programming:
