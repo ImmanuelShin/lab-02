@@ -72,41 +72,16 @@ function startQuiz(){
   ];
 
 
-  //Loop for yesNo function. Loops five times for all five yes/no questions.
+  // Loop for yesNo function. Loops five times for all five yes/no questions.
   for (let x = 0; x < 5; x++){
     prompts[x] = yesNo(questions[x], prompts[x], responses[x], corrects[x]);
   }
 
-  // Sixth Question
-  // Generates random number 1-10 into randomDigit
-  // Keeps track of # of guesses with guess6Counter
-  // Keeps track of all user inputs with number6Guesses array
-  let randomDigit = Math.floor((Math.random() * 10) + 1);
-  answers[5] = randomDigit;
-  let guess6Counter = 1;
-  const number6Guesses = [];
-
-  while (guess6Counter <= 4) {
-    prompts[5] = prompt(questions[5] + ' You have ' + (5 - guess6Counter) + ' guesses left.');
-    number6Guesses[guess6Counter-1] = prompts[5];
-    if (Number(prompts[5]) === randomDigit) {
-      alert('You got it! It only took you ' + guess6Counter + ' tries!');
-      prompts[5] = number6Guesses;
-      correctTally += 1;
-      break;
-    } else if (guess6Counter <= 3) {
-      if (prompts[5] < randomDigit) {
-        alert('Nope! Too bad, your guess was too low. Try again!');
-      } else {
-        alert('Nope! Too bad, your guess was too high. Try again!');
-      }
-    } else {
-      alert('Nope! You\'re out of guesses. The correct answer was: ' + randomDigit + '. Thanks for playing!');
-      prompts[5] = number6Guesses;
-      break;
-    }
-    guess6Counter += 1;
-  }
+  // Calls question 6
+  // Adds returning prompts and answers to respective arrays
+  let return6 = numberGuesser(questions[5]);
+  prompts[5] = return6[0];
+  answers[5] = return6[1];
 
   // Seventh Question
   // Keeps track of # of guesses with guess7Counter
@@ -175,6 +150,40 @@ function yesNo(questions, prompts, responses, corrects){
     alert('You did not enter yes/no or y/n for this question, buddy.');
   }
   return prompts;
+}
+
+// Function for question 6.
+// Generates random number 1-10 into randomDigit
+// Keeps track of # of guesses with guessCounter
+// Keeps track of all user inputs with number6Guesses array
+// Returns all user input and generated random number.
+function numberGuesser(questions) {
+
+  let randomDigit = Math.floor((Math.random() * 10) + 1);
+  let guessCounter = 0;
+  const prompts = [];
+  const returnValue = [];
+
+  while (guessCounter <= 3) {
+    prompts[guessCounter] = prompt(questions + ' You have ' + (4 - guessCounter) + ' guesses left.');
+    if (Number(prompts[guessCounter]) === randomDigit) {
+      alert('You got it! It only took you ' + guessCounter + ' tries!');
+      correctTally += 1;
+      returnValue.push(prompts, randomDigit);
+      return returnValue;
+    } else if (guessCounter <= 2) {
+      if (prompts[guessCounter] < randomDigit) {
+        alert('Nope! Too bad, your guess was too low. Try again!');
+      } else {
+        alert('Nope! Too bad, your guess was too high. Try again!');
+      }
+    } else {
+      alert('Nope! You\'re out of guesses. The correct answer was: ' + randomDigit + '. Thanks for playing!');
+      returnValue.push(prompts, randomDigit);
+      return returnValue;
+    }
+    guessCounter += 1;
+  }
 }
 
 // function to print answers to HTML. Takes question, prompt, and answer arguments.
