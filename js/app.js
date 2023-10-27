@@ -3,6 +3,9 @@
 // User greeting section. Prompts user for name.
 let userName = prompt('Hello! What is your name?');
 
+// Tally keeps track of # correct guesses. Global for ease of access.
+let correctTally = 0;
+
 // Calling
 intro(userName);
 
@@ -19,9 +22,6 @@ function intro(input) {
     finalPrint(input);
   }
 }
-
-// Tally keeps track of # correct guesses. Global for ease of access.
-let correctTally = 0;
 
 // Quiz section. Called by quizButton.
 function startQuiz(){
@@ -55,6 +55,7 @@ function startQuiz(){
   // Makes the hidden answer section visible
   getID('quizAnswerSection').style.visibility = 'visible';
 
+  // Calls printAnswers to print answers.
   printAnswers(questions, prompts, answers);
 
 }
