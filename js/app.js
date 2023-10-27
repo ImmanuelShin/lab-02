@@ -83,34 +83,8 @@ function startQuiz(){
   prompts[5] = return6[0];
   answers[5] = return6[1];
 
-  // Seventh Question
-  // Keeps track of # of guesses with guess7Counter
-  // Keeps track of all user inputs with number7Guesses array
-  // correctness breaks loop when set to true.
-  let guess7Counter = 1;
-  const number7Guesses = [];
-  let correctness = false;
-
-  while ((guess7Counter <= 6) && (correctness === false)) {
-    prompts[6] = prompt(questions[6] + ' You have ' + (7 - guess7Counter) + ' guesses left.');
-    number7Guesses[guess7Counter - 1] = prompts[6];
-    for (let index in answers[6]) {
-      if (Number(prompts[6]) === Number(answers[6][index])) {
-        alert('You got it! It only took you ' + guess7Counter + ' tries!');
-        prompts[6] = number7Guesses;
-        correctness = true;
-        correctTally += 1;
-        break;
-      }
-    }
-    guess7Counter += 1;
-    if (guess7Counter <=6 && (correctness === false)) {
-      alert('Nope! Try again!');
-    } else if (correctness === false) {
-      alert('Aww, game over! Try again next time!');
-      prompts[6] = number7Guesses;
-    }
-  }
+  // Calls question 7
+  prompts[6] = multiGuess(questions[6], answers[6]);
 
 
   // Makes the hidden answer section visible
@@ -131,6 +105,7 @@ function startQuiz(){
   section.append(tallyPrint);
 
 }
+
 
 // Generic yes or no function. Accepts questions, prompts, responses, corrects as arguments.
 // Arguments should not be in array format except for responses.
@@ -167,7 +142,7 @@ function numberGuesser(questions) {
   while (guessCounter <= 3) {
     prompts[guessCounter] = prompt(questions + ' You have ' + (4 - guessCounter) + ' guesses left.');
     if (Number(prompts[guessCounter]) === randomDigit) {
-      alert('You got it! It only took you ' + guessCounter + ' tries!');
+      alert('You got it! It only took you ' + (guessCounter + 1) + ' tries!');
       correctTally += 1;
       returnValue.push(prompts, randomDigit);
       return returnValue;
@@ -186,8 +161,38 @@ function numberGuesser(questions) {
   }
 }
 
+// Function for question 7
+// Keeps track of # of guesses with guessCounter
+// Keeps track of all user inputs with numberGuesses array
+// correctness breaks loop when set to true.
+function multiGuess(questions, answers) {
+
+  let guessCounter = 0;
+  const prompts = [];
+  let correctness = false;
+
+  while ((guessCounter <= 5) && (correctness === false)) {
+    prompts[guessCounter] = prompt(questions + ' You have ' + (6 - guessCounter) + ' guesses left.');
+    for (let index in answers) {
+      if (Number(prompts[guessCounter]) === Number(answers[index])) {
+        alert('You got it! It only took you ' + (guessCounter + 1) + ' tries!');
+        correctness = true;
+        correctTally += 1;
+        return prompts;
+      }
+    }
+    guessCounter += 1;
+    if (guessCounter <=5 && (correctness === false)) {
+      alert('Nope! Try again!');
+    } else if (correctness === false) {
+      alert('Aww, game over! Try again next time!');
+      return prompts;
+    }
+  }
+}
+
 // function to print answers to HTML. Takes question, prompt, and answer arguments.
-function printAnswers(prompt, answer, realAns){
+function printAnswers(prompt, answer, realAns) {
   let section = getID('quizAnswerSection');
   let pPrint = cEl('p');
   pPrint.setAttribute('class', 'quizP');
@@ -202,22 +207,22 @@ function printAnswers(prompt, answer, realAns){
 
 // Function to print final message to user.
 // Was the final area until lab-03 told us to put another thing at the bottom. Just saying.
-function finalPrint(user){
+function finalPrint(user) {
   getID('finalMessageArea').textContent = 'Hey, ' + user + '! Thanks for visiting my site. I hope you got to know a little bit more about me. This website might be small and simple, but it is mine. It makes me happy that I could share it with you.';
 }
 
 // Repetitive 'yes' checking
-function isYes(answer){
+function isYes(answer) {
   return (answer === 'y' || answer === 'yes');
 }
 
 // Repetitive 'no' checking
-function isNo(answer){
+function isNo(answer) {
   return (answer === 'n' || answer === 'no');
 }
 
 // Get element by ID
-function getID(element){
+function getID(element) {
   return document.getElementById(element);
 }
 
