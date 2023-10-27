@@ -26,7 +26,43 @@ let correctTally = 0;
 // Quiz section. Called by quizButton.
 function startQuiz(){
 
+  // Tally reset
   correctTally = 0;
+
+  // Retrieves all arrays.
+  const everything = getEverything();
+  const questions  = everything[0];
+  const prompts  = everything[1];
+  const answers  = everything[2];
+  const responses  = everything[3];
+  const corrects  = everything[4];
+
+  // Loop for yesNo function. Loops five times for all five yes/no questions.
+  for (let x = 0; x < 5; x++){
+    prompts[x] = yesNo(questions[x], prompts[x], responses[x], corrects[x]);
+  }
+
+  // Calls question 6
+  // Adds returning prompts and answers to respective arrays
+  let return6 = numberGuesser(questions[5]);
+  prompts[5] = return6[0];
+  answers[5] = return6[1];
+
+  // Calls question 7
+  // Adds user prompts into prompts
+  prompts[6] = multiGuess(questions[6], answers[6]);
+
+  // Makes the hidden answer section visible
+  getID('quizAnswerSection').style.visibility = 'visible';
+
+  printAnswers(questions, prompts, answers);
+
+}
+
+// Function area for all
+function getEverything() {
+
+  const everything = [];
 
   // Bank of all questions
   const questions = [
@@ -70,42 +106,9 @@ function startQuiz(){
     [0],
     [0],
   ];
-
-
-  // Loop for yesNo function. Loops five times for all five yes/no questions.
-  for (let x = 0; x < 5; x++){
-    prompts[x] = yesNo(questions[x], prompts[x], responses[x], corrects[x]);
-  }
-
-  // Calls question 6
-  // Adds returning prompts and answers to respective arrays
-  let return6 = numberGuesser(questions[5]);
-  prompts[5] = return6[0];
-  answers[5] = return6[1];
-
-  // Calls question 7
-  prompts[6] = multiGuess(questions[6], answers[6]);
-
-
-  // Makes the hidden answer section visible
-  getID('quizAnswerSection').style.visibility = 'visible';
-
-  // Creates new p element to contain final score
-  // Calls printAnswers function to print the answers onto HTML.
-  // Adds new p element to the end of the answer section
-  let section = getID('quizAnswerSection');
-  let tallyPrint = cEl('p');
-  tallyPrint.textContent = 'You scored ' + correctTally + ' out of 7!';
-  while(section.firstChild) {
-    section.removeChild(section.lastChild);
-  }
-  questions.forEach(function (item, index) {
-    printAnswers(questions[index], prompts[index], answers[index]);
-  });
-  section.append(tallyPrint);
-
+  everything.push(questions, prompts, answers, responses, corrects);
+  return everything;
 }
-
 
 // Generic yes or no function. Accepts questions, prompts, responses, corrects as arguments.
 // Arguments should not be in array format except for responses.
@@ -192,17 +195,31 @@ function multiGuess(questions, answers) {
 }
 
 // function to print answers to HTML. Takes question, prompt, and answer arguments.
-function printAnswers(prompt, answer, realAns) {
+// Creates new p elements to contain each question, user input, and answer
+// Creates new p element to contain final score
+// Appends p elements to #quizAnswerSection
+function printAnswers(questions, prompts, answers) {
+
   let section = getID('quizAnswerSection');
-  let pPrint = cEl('p');
-  pPrint.setAttribute('class', 'quizP');
-  let br = cEl('br');
-  let node1 = document.createTextNode(prompt);
-  let node2 = document.createTextNode('Your answer: ' + answer + '. Correct Answer: ' + realAns);
-  pPrint.appendChild(node1);
-  pPrint.appendChild(br);
-  pPrint.appendChild(node2);
-  section.append(pPrint);
+  let tallyPrint = cEl('p');
+
+  tallyPrint.textContent = 'You scored ' + correctTally + ' out of 7!';
+
+  while(section.firstChild) {
+    section.removeChild(section.lastChild);
+  }
+  questions.forEach(function (item, index) {
+    let pPrint = cEl('p');
+    pPrint.setAttribute('class', 'quizP');
+    let br = cEl('br');
+    let node1 = document.createTextNode(questions[index]);
+    let node2 = document.createTextNode('Your answer: ' + prompts[index] + '. Correct Answer: ' + answers[index]);
+    pPrint.appendChild(node1);
+    pPrint.appendChild(br);
+    pPrint.appendChild(node2);
+    section.append(pPrint);
+  });
+  section.append(tallyPrint);
 }
 
 // Function to print final message to user.
