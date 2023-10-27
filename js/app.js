@@ -121,7 +121,6 @@ function startQuiz(){
     number7Guesses[guess7Counter - 1] = prompts[6];
     for (let index in answers[6]) {
       if (Number(prompts[6]) === Number(answers[6][index])) {
-        // console.log(answers[6][index]);
         alert('You got it! It only took you ' + guess7Counter + ' tries!');
         prompts[6] = number7Guesses;
         correctness = true;
